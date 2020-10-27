@@ -7,7 +7,7 @@ class BestsellersSpider(scrapy.Spider):
     start_urls = ['http://www.glassesshop.com/bestsellers/']
 
     def parse(self, response):
-        for product in response.xpath("//div[@id='product-lists']/div[@class='col-12 pb-5 mb-lg-3 col-lg-4 product-list-row']"):
+        for product in response.xpath("//div[@id='product-lists']/div[contains(@class, 'product-list-row')]"):
             if product.xpath("./div[@class='product-img-outer']"):
                 yield {
                     'url': product.xpath("./div[@class='product-img-outer']/a/@href").get(),
